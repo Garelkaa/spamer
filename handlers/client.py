@@ -18,6 +18,7 @@ class Client:
     async def register_handlers(self):
         self.dp.message(CommandStart())(self.start_handler)
         self.dp.callback_query(F.data == 'what_work_spamer')(self.what_work_spamer)
+        self.dp.callback_query(F.data == 'back_menu')(self.back_menu_handler)
         
         
     async def start_handler(self, m: Message):
@@ -28,5 +29,9 @@ class Client:
     
     async def what_work_spamer(self, call: CallbackQuery):
         await call.message.delete()
-        await call.message.answer(info_text, parse_mode='HTML')
+        await call.message.answer(info_text, parse_mode='HTML', reply_markup=await UserKb.back_menu())
     
+    
+    async def back_menu_handler(self, call: CallbackQuery):
+        await call.message.delete()
+        await call.message.answer(start_text, reply_markup=await UserKb.main_menu())
