@@ -18,7 +18,7 @@ AsyncSessionLocal = sessionmaker(
 class User(Base):
     __tablename__ = 'users' 
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     user_id_tg = Column(BigInteger, primary_key=True)
     username = Column(String)
     
