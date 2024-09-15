@@ -7,7 +7,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 DATABASE_URL = 'postgresql+asyncpg://postgres:1111@localhost/spamer'
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(DATABASE_URL, echo=False)
 
 Base = declarative_base()
 
